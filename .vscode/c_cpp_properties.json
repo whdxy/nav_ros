@@ -1,0 +1,43 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/whd/carto_ws/install_isolated/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/whd/vector_virtual_ws/devel/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/amcl/include/**",
+        "/home/whd/vector_virtual_ws/src/antobot_description/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/base_local_planner/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/carrot_planner/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/clear_costmap_recovery/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/costmap_2d/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/dwa_local_planner/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/global_planner/include/**",
+        "/home/whd/vector_virtual_ws/src/lslidar_c32/lslidar_c32_decoder/include/**",
+        "/home/whd/vector_virtual_ws/src/lslidar_c32/lslidar_c32_driver/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/map_server/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/move_base/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/move_slow_and_clear/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/nav_core/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/navfn/include/**",
+        "/home/whd/vector_virtual_ws/src/pub_sub/include/**",
+        "/home/whd/vector_virtual_ws/src/robot_pose_ekf/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/rotate_recovery/include/**",
+        "/home/whd/vector_virtual_ws/src/send_goal/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/teb_local_planner-melodic/include/**",
+        "/home/whd/vector_virtual_ws/src/nav/navigation-melodic/voxel_grid/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
