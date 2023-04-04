@@ -33,8 +33,7 @@
 *  POSSIBILITY OF SUCH DAMAGE.
 *
 * Author: Eitan Marder-Eppstein
-*********************************************************************/
-
+*********************************************************************/  
 #include <base_local_planner/trajectory_planner_ros.h>
 
 #ifdef HAVE_SYS_TIME_H
@@ -85,12 +84,11 @@ namespace base_local_planner {
       initialize(name, tf, costmap_ros);
   }
 
-  void TrajectoryPlannerROS::initialize(
-      std::string name,
-      tf2_ros::Buffer* tf,
-      costmap_2d::Costmap2DROS* costmap_ros){
+  // 初始化
+  // 从参数服务器读取相关参数
+  void TrajectoryPlannerROS::initialize(std::string name, tf2_ros::Buffer* tf, costmap_2d::Costmap2DROS* costmap_ros){
     if (! isInitialized()) {
-
+    
       ros::NodeHandle private_nh("~/" + name);
       g_plan_pub_ = private_nh.advertise<nav_msgs::Path>("global_plan", 1);
       l_plan_pub_ = private_nh.advertise<nav_msgs::Path>("local_plan", 1);
@@ -376,6 +374,7 @@ namespace base_local_planner {
 
   }
 
+  // 设置路径
   bool TrajectoryPlannerROS::setPlan(const std::vector<geometry_msgs::PoseStamped>& orig_global_plan){
     if (! isInitialized()) {
       ROS_ERROR("This planner has not been initialized, please call initialize() before using this planner");
@@ -393,7 +392,12 @@ namespace base_local_planner {
     return true;
   }
 
+  // 计算控制速度
+  // 参数：cmd_vel，控制速度(输出)
   bool TrajectoryPlannerROS::computeVelocityCommands(geometry_msgs::Twist& cmd_vel){
+
+    ROS_INFO("11111111111111111111111");
+    
     if (! isInitialized()) {
       ROS_ERROR("This planner has not been initialized, please call initialize() before using this planner");
       return false;
@@ -607,6 +611,7 @@ namespace base_local_planner {
     return -1.0;
   }
 
+  // 判度是否到达目标点
   bool TrajectoryPlannerROS::isGoalReached() {
     if (! isInitialized()) {
       ROS_ERROR("This planner has not been initialized, please call initialize() before using this planner");

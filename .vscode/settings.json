@@ -8,5 +8,17 @@
         "/home/whd/carto_ws/install_isolated/lib/python2.7/dist-packages",
         "/home/whd/vector_virtual_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/melodic/lib/python2.7/dist-packages"
-    ]
+    ],
+    "files.associations": {
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "functional": "cpp",
+        "memory": "cpp",
+        "sstream": "cpp",
+        "any": "cpp",
+        "*.inc": "cpp"
+    }
 }

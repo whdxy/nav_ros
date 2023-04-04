@@ -50,6 +50,7 @@ using namespace std;
 namespace costmap_2d
 {
 
+
 void move_parameter(ros::NodeHandle& old_h, ros::NodeHandle& new_h, std::string name, bool should_delete = true)
 {
   if (!old_h.hasParam(name))
@@ -61,6 +62,7 @@ void move_parameter(ros::NodeHandle& old_h, ros::NodeHandle& new_h, std::string 
   if (should_delete) old_h.deleteParam(name);
 }
 
+// 代价地图初始化(构造函数)
 Costmap2DROS::Costmap2DROS(const std::string& name, tf2_ros::Buffer& tf) :
     layered_costmap_(NULL),
     name_(name),
@@ -91,14 +93,15 @@ Costmap2DROS::Costmap2DROS(const std::string& name, tf2_ros::Buffer& tf) :
   ros::Time last_error = ros::Time::now();
   std::string tf_error;
   // we need to make sure that the transform between the robot base frame and the global frame is available
-  while (ros::ok()
-      && !tf_.canTransform(global_frame_, robot_base_frame_, ros::Time(), ros::Duration(0.1), &tf_error))
+  while (ros::ok() && !tf_.canTransform(global_frame_, robot_base_frame_, ros::Time(), ros::Duration(0.1), &tf_error))
   {
     ros::spinOnce();
     if (last_error + ros::Duration(5.0) < ros::Time::now())
     {
+      ROS_WARN("-----------------------------------------------------------------------");
       ROS_WARN("Timed out waiting for transform from %s to %s to become available before running costmap, tf error: %s",
                robot_base_frame_.c_str(), global_frame_.c_str(), tf_error.c_str());
+      ROS_WARN("-----------------------------------------------------------------------");
       last_error = ros::Time::now();
     }
     // The error string will accumulate and errors will typically be the same, so the last
@@ -554,7 +557,6 @@ void Costmap2DROS::resume()
   while (!initialized_)
     r.sleep();
 }
-
 
 void Costmap2DROS::resetLayers()
 {

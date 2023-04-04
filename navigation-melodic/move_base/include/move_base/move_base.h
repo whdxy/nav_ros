@@ -66,9 +66,9 @@ namespace move_base {
 
   //movebase状态表示
   enum MoveBaseState {
-    PLANNING,
-    CONTROLLING,
-    CLEARING
+    PLANNING, // 路径规划模式(默认模式)
+    CONTROLLING, // 控制模式
+    CLEARING // 清障模式
   };
 
   //触发恢复模式
@@ -216,16 +216,17 @@ namespace move_base {
       ros::Publisher current_goal_pub_, vel_pub_, action_goal_pub_; // 话题发布器：当前目标发布，控制指令发布，action目标发布
       ros::Subscriber goal_sub_; // 话题订阅器：目标订阅
       ros::ServiceServer make_plan_srv_, clear_costmaps_srv_; // 服务通信服务端：地图规划服务，清楚代价地图服务
-      bool shutdown_costmaps_, clearing_rotation_allowed_, recovery_behavior_enabled_;
+      bool shutdown_costmaps_, clearing_rotation_allowed_, recovery_behavior_enabled_; // 
       double oscillation_timeout_, oscillation_distance_;
 
-      MoveBaseState state_;
+      MoveBaseState state_; // movebase状态
       RecoveryTrigger recovery_trigger_;
 
       ros::Time last_valid_plan_, last_valid_control_, last_oscillation_reset_;
-      geometry_msgs::PoseStamped oscillation_pose_; // 震荡？？？
+      geometry_msgs::PoseStamped oscillation_pose_; // ？？？震荡位置
 
       //pluginlib
+      //类加载器
       pluginlib::ClassLoader<nav_core::BaseGlobalPlanner> bgp_loader_; // 全局路径规划器加载
       pluginlib::ClassLoader<nav_core::BaseLocalPlanner> blp_loader_; // 局部路径规划器加载
       pluginlib::ClassLoader<nav_core::RecoveryBehavior> recovery_loader_; // 恢复行为规划器加载
@@ -237,7 +238,7 @@ namespace move_base {
 
       //set up the planner's thread
       //设在路径规划线程
-      bool runPlanner_; // 路径规划进行标志位planner_goal_
+      bool runPlanner_; // 路径规划是否正在进行标志位
       boost::recursive_mutex planner_mutex_; // 路径规划线程锁
       boost::condition_variable_any planner_cond_; // 规划线程条件变量
       geometry_msgs::PoseStamped planner_goal_; // 目标点
@@ -252,8 +253,8 @@ namespace move_base {
 
       move_base::MoveBaseConfig last_config_;
       move_base::MoveBaseConfig default_config_;
-      bool setup_, p_freq_change_, c_freq_change_;
-      bool new_global_plan_;
+      bool setup_, p_freq_change_, c_freq_change_; // 1，2，控制频率修改标志位
+      bool new_global_plan_; // 是否产生新的全局地图标志位
   };
 };
 #endif

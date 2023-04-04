@@ -92,15 +92,19 @@ void TebLocalPlannerROS::initialize(std::string name, tf2_ros::Buffer* tf, costm
     ros::NodeHandle nh("~/" + name);
 	        
     // get parameters of TebConfig via the nodehandle and override the default config
+    // 通过nodehandle获得TebConfig类的参数以及覆盖默认配置
     cfg_.loadRosParamFromNodeHandle(nh);       
     
     // reserve some memory for obstacles
+    // 为障碍物保留一定的存储空间
     obstacles_.reserve(500);
         
-    // create visualization instance	
+    // create visualization instance
+    // 创建可视化的实例	
     visualization_ = TebVisualizationPtr(new TebVisualization(nh, cfg_)); 
         
     // create robot footprint/contour model for optimization
+    // 创建机器人的footprint（轮廓）模型，用于优化
     RobotFootprintModelPtr robot_model = getRobotFootprintFromParamServer(nh);
     
     // create the planner instance

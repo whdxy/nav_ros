@@ -153,6 +153,7 @@ namespace base_local_planner {
        */
       double scoreTrajectory(double vx_samp, double vy_samp, double vtheta_samp, bool update_map = true);
 
+      // 判度是否初始化
       bool isInitialized() {
         return initialized_;
       }
